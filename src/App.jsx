@@ -6,6 +6,7 @@ import About from './components/About';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
+import ScrollToTopButton from './components/ScrollToTopButton'; // Import the button
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
       <Element name="contact">
         <Contact />
       </Element>
+      <ScrollToTopButton /> {/* Include the button */}
     </>
   );
 };
