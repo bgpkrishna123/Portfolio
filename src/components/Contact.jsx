@@ -232,8 +232,8 @@ const Contact = () => {
               required
               whileFocus={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
-              color="red.500"
-              _focus={{ borderColor: "red.500" }}
+              
+              _focus={{ borderColor: "teal.500" }}
             />
             <MotionInput
               name="from_email"
@@ -244,8 +244,8 @@ const Contact = () => {
               required
               whileFocus={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
-              color="red.500"
-              _focus={{ borderColor: "red.500" }}
+              
+              _focus={{ borderColor: "tea,.500" }}
             />
             <MotionTextarea
               name="message"
@@ -256,8 +256,8 @@ const Contact = () => {
               required
               whileFocus={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
-              color="red.500"
-              _focus={{ borderColor: "red.500" }}
+
+              _focus={{ borderColor: "teal.500" }}
             />
             <MotionButton
               type="submit"
