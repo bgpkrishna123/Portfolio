@@ -68,9 +68,9 @@ const Navbar = () => {
   const handleResumeClick = (e) => {
     e.preventDefault();
     const viewUrl =
-      'https://drive.google.com/file/d/1LNjuhwkhWMSXE7ysJdekD_KlW_PnacF1/view?usp=sharing';
+    'https://drive.google.com/file/d/1zy7TvzBj2hw6u1b0lGG53J1RdAS4_kSG/view?usp=sharing';
     const downloadUrl =
-      'https://drive.google.com/uc?export=download&id=1LNjuhwkhWMSXE7ysJdekD_KlW_PnacF1';
+      'https://drive.google.com/uc?export=download&id=1zy7TvzBj2hw6u1b0lGG53J1RdAS4_kSG';
 
     window.open(viewUrl, '_blank', 'noopener,noreferrer');
 
@@ -221,6 +221,20 @@ const Navbar = () => {
             >
               Projects
             </ChakraLink>
+            
+            <ChakraLink
+              href="#"
+              onClick={handleResumeClick}
+              cursor="pointer"
+              _hover={{ textDecoration: 'none', backgroundColor: "purple.400", color: 'white' }}
+              fontSize="xl"
+              px={4}
+              py={2}
+              borderRadius="md"
+              mr={1.5}
+            >
+              Resume
+            </ChakraLink>
             <ChakraLink
               as={ScrollLink}
               to="contact"
@@ -234,18 +248,6 @@ const Navbar = () => {
               mr={4}
             >
               Contact
-            </ChakraLink>
-            <ChakraLink
-              href="#"
-              onClick={handleResumeClick}
-              cursor="pointer"
-              _hover={{ textDecoration: 'none', backgroundColor: 'red', color: 'white' }}
-              fontSize="xl"
-              px={4}
-              py={2}
-              borderRadius="md"
-            >
-              Resume
             </ChakraLink>
           </>
         )}

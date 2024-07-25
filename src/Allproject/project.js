@@ -28,6 +28,7 @@ const projectsData = {
       images: [sparkleHome,sparkleProduct,sparkleStore, sparkleSignUp,sparkleSignIn,sparkleWishlist,sparkleCart],
       githubLink: "https://github.com/Anujkumar960/Sparkle",
       liveLink: "https://sparkle-clone.netlify.app/",
+      techStack: ["CSS3", "HTML5", "JavaScript"],
       about: "Sparkle is a captivating online jewelry platform, created as a clone, inspired by the elegance and craftsmanship of Tanishq. Our mission is to provide users with a simulated experience of exploring a curated collection of exquisite jewelry pieces that symbolize life's special moments."
     },
     {
@@ -35,6 +36,7 @@ const projectsData = {
       images: [stayBnbHome,stayBnbHome2, stayBnbProperty,stayBnbProperty2, stayBnbSignUp, stayBnbSignIn,stayBnbPayment],
       githubLink: "https://github.com/AbhinavTyagi30/StayBnB",
       liveLink: "https://stay-bnb-in.vercel.app/",
+      techStack: ["JavaScript", "React", "Express.js", "MongoDB", "CSS3", "HTML5", "Chakra UI"],
       about: "Your go-to platform for unique accommodations worldwide. Inspired by Airbnb, StayBnb offers seamless booking for diverse lodging options, from vacation rentals to boutique hotels. With user-friendly features, StayBnb redefines travel, ensuring memorable stays wherever you go. Join us and explore the world like never before."
     },
     {
@@ -42,6 +44,8 @@ const projectsData = {
       images: [eventHome, eventHome2,eventHome3,eventCard,eventDetails,eventLogin,eventCreator],
       githubLink: "https://github.com/bgpkrishna123/EventMaestro",
       liveLink: "https://event-maestro-jfkz.vercel.app/",
+      techStack: ["JavaScript", "React", "Node", "Express", "MongoDB", "CSS3", "HTML5", "Chakra"],
+
       about: "Event Maestro is a website designed for event planners and ticket booking. It helps organizers plan events and allows attendees to purchase tickets easily."
     },
   ]

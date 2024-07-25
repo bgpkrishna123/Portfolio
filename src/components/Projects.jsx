@@ -7,6 +7,9 @@ import {
   Button,
   Link,
   SimpleGrid,
+  Tag,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 import { FaProjectDiagram, FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import projectsData from "../Allproject/project";
@@ -164,6 +167,25 @@ const Projects = () => {
               >
                 {project.title}
               </Text>
+
+              <Wrap spacing={2} mb="1rem" justify="center">
+                {project.techStack.map((tech, idx) => (
+                  <WrapItem key={idx}>
+                    <Tag
+                      colorScheme="purple"
+                      variant="outline"
+                      transition="all 0.3s ease"
+                      _hover={{
+                        color: "white",
+                        bg: "purple.500",
+                        transform: "scale(1.1)"
+                      }}
+                    >
+                      {tech}
+                    </Tag>
+                  </WrapItem>
+                ))}
+              </Wrap>
 
               <Text fontSize={{ base: "sm", md: "md" }} mb="1rem">
                 {project.about}
