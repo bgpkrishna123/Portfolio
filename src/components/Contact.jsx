@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import {
   Box,
   Heading,
@@ -8,10 +8,12 @@ import {
   Textarea,
   Button,
   SimpleGrid,
+  useToast
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FaEnvelope, FaPhoneAlt, FaGithub, FaLinkedin } from "react-icons/fa";
-import { AiFillMail } from "react-icons/ai"; 
+import { AiFillMail } from "react-icons/ai";
+import emailjs from 'emailjs-com';
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
 const MotionBox = motion(Box);
@@ -24,6 +26,41 @@ const MotionButton = motion(Button);
 const Contact = () => {
   const contactRef = useRef(null);
   const isVisible = useIntersectionObserver(contactRef, { threshold: 0.5 });
+  const [formData, setFormData] = useState({ from_name: '', from_email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const toast = useToast();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    emailjs.sendForm('service_9ocmnl6', 'template_cvy6pes', e.target, 'fj_Y3pqHib14qhTED')
+      .then((result) => {
+        toast({
+          title: "Message sent.",
+          description: "Thank you for reaching out! Your message has been successfully sent, and I'll get back to you as soon as possible.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+        setFormData({ from_name: '', from_email: '', message: '' });
+      }, (error) => {
+        toast({
+          title: "An error occurred.",
+          description: "Oops! There was an issue sending your message. Please try again later or contact me directly at bgpkrishna123@gmail.com.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      }).finally(() => {
+        setIsSubmitting(false);
+      });
+  };
 
   const handleEmailClick = () => {
     window.location.href = "mailto:bgpkrishna123@gmail.com";
@@ -83,99 +120,100 @@ const Contact = () => {
               animate={{ x: isVisible ? '20%' : '-100%', opacity: isVisible ? 1 : 0 }}
               transition={{ duration: 1, delay: 0.8 }}
               mb="1rem">
-            <MotionBox
-              initial={{ opacity: 0, x: -100 }} 
-              animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -100 }} 
-              transition={{ duration: 1 }}
-              mb="1rem"
-            >
-              <MotionIcon
-                as={FaEnvelope}
-                boxSize={{ base: "30px", md: "40px" }} 
-                color="red.500"
-                mr="1rem"
-              />
-              <Text
-                as="span"
-                fontSize={{ base: "lg", md: "xl" }} 
-                _hover={{ color: "red.500" }} 
-                onClick={handleEmailClick}
-                cursor="pointer"
+              <MotionBox
+                initial={{ opacity: 0, x: -100 }} 
+                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -100 }} 
+                transition={{ duration: 1 }}
+                mb="1rem"
               >
-                bgpkrishna123@gmail.com
-              </Text>
-            </MotionBox>
+                <MotionIcon
+                  as={FaEnvelope}
+                  boxSize={{ base: "30px", md: "40px" }} 
+                  color="red.500"
+                  mr="1rem"
+                />
+                <Text
+                  as="span"
+                  fontSize={{ base: "lg", md: "xl" }} 
+                  _hover={{ color: "red.500" }} 
+                  onClick={handleEmailClick}
+                  cursor="pointer"
+                >
+                  bgpkrishna123@gmail.com
+                </Text>
+              </MotionBox>
 
-            <MotionBox
-              initial={{ opacity: 0, x: -100 }} 
-              animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -100 }} 
-              transition={{ duration: 1, delay: 0.2 }}
-              mb="1rem"
-            >
-              <MotionIcon
-                as={FaPhoneAlt}
-                boxSize={{ base: "30px", md: "40px" }} 
-                color="red.500"
-                mr="1rem"
-              />
-              <Text
-                as="span"
-                fontSize={{ base: "lg", md: "xl" }} 
-                _hover={{ color: "red.500" }} 
+              <MotionBox
+                initial={{ opacity: 0, x: -100 }} 
+                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -100 }} 
+                transition={{ duration: 1, delay: 0.2 }}
+                mb="1rem"
               >
-                9534459253
-              </Text>
-            </MotionBox>
+                <MotionIcon
+                  as={FaPhoneAlt}
+                  boxSize={{ base: "30px", md: "40px" }} 
+                  color="red.500"
+                  mr="1rem"
+                />
+                <Text
+                  as="span"
+                  fontSize={{ base: "lg", md: "xl" }} 
+                  _hover={{ color: "red.500" }} 
+                >
+                  9534459253
+                </Text>
+              </MotionBox>
 
-            <MotionBox
-              display="flex"
-              mt="1rem"
-              justifyContent={{ base: "center", md: "flex-start" }} 
-              alignItems="center"
-              initial={{ opacity: 0, x: -100 }} 
-              animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -100 }} 
-              transition={{ duration: 1, delay: 0.4 }}
-            >
-              <MotionIcon
-                as={AiFillMail}
-                boxSize={{ base: "50px", md: "60px" }}
-                color="skyblue" 
-                cursor="pointer"
-                onClick={handleEmailClick} 
-                _hover={{ color: "orange.400" }} 
-                mr={{ base: "1rem", md: "2rem" }} 
-              />
-              <MotionIcon
-                as={FaGithub}
-                boxSize={{ base: "40px", md: "50px" }}
-                color="gray.500"
-                cursor="pointer"
-                onClick={() =>
-                  window.open("https://github.com/bgpkrishna123", "_blank")
-                }
-                _hover={{ color: "gray.700" }}
-                mr={{ base: "1rem", md: "2rem" }} 
-              />
+              <MotionBox
+                display="flex"
+                mt="1rem"
+                justifyContent={{ base: "center", md: "flex-start" }} 
+                alignItems="center"
+                initial={{ opacity: 0, x: -100 }} 
+                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -100 }} 
+                transition={{ duration: 1, delay: 0.4 }}
+              >
+                <MotionIcon
+                  as={AiFillMail}
+                  boxSize={{ base: "50px", md: "60px" }}
+                  color="skyblue" 
+                  cursor="pointer"
+                  onClick={handleEmailClick} 
+                  _hover={{ color: "orange.400" }} 
+                  mr={{ base: "1rem", md: "2rem" }} 
+                />
+                <MotionIcon
+                  as={FaGithub}
+                  boxSize={{ base: "40px", md: "50px" }}
+                  color="gray.500"
+                  cursor="pointer"
+                  onClick={() =>
+                    window.open("https://github.com/bgpkrishna123", "_blank")
+                  }
+                  _hover={{ color: "gray.700" }}
+                  mr={{ base: "1rem", md: "2rem" }} 
+                />
 
-              <MotionIcon
-                as={FaLinkedin}
-                boxSize={{ base: "40px", md: "50px" }}
-                color="blue.300"
-                cursor="pointer"
-                onClick={() =>
-                  window.open(
-                    "https://www.linkedin.com/in/krishna-pratap-coder/",
-                    "_blank"
-                  )
-                }
-                _hover={{ color: "blue.500" }}
-              />
-            </MotionBox>
+                <MotionIcon
+                  as={FaLinkedin}
+                  boxSize={{ base: "40px", md: "50px" }}
+                  color="blue.300"
+                  cursor="pointer"
+                  onClick={() =>
+                    window.open(
+                      "https://www.linkedin.com/in/krishna-pratap-coder/",
+                      "_blank"
+                    )
+                  }
+                  _hover={{ color: "blue.500" }}
+                />
+              </MotionBox>
             </MotionBox>
           </Box>
 
-
           <MotionBox
+            as="form"
+            onSubmit={handleSubmit}
             initial={{ x: '100%', opacity: 0 }}
             animate={{ x: isVisible ? '0%' : '100%', opacity: isVisible ? 1 : 0 }}
             transition={{ duration: 1 }}
@@ -186,52 +224,52 @@ const Contact = () => {
             _dark={{ bg: "gray.700" }} 
           >
             <MotionInput
-              placeholder="Name"
+              name="from_name"
+              placeholder="Your Name"
               mb="1rem"
+              value={formData.from_name}
+              onChange={handleChange}
+              required
               whileFocus={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
               color="red.500"
               _focus={{ borderColor: "red.500" }}
             />
             <MotionInput
-              placeholder="Email"
+              name="from_email"
+              placeholder="Your Email"
               mb="1rem"
+              value={formData.from_email}
+              onChange={handleChange}
+              required
               whileFocus={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
               color="red.500"
               _focus={{ borderColor: "red.500" }}
             />
             <MotionTextarea
-              placeholder="Message"
+              name="message"
+              placeholder="Your Message"
               mb="1rem"
+              value={formData.message}
+              onChange={handleChange}
+              required
               whileFocus={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
               color="red.500"
               _focus={{ borderColor: "red.500" }}
             />
             <MotionButton
-              bg="red.500"
-              width="30%"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-              _hover={{ bg: "red.400" }}
+              type="submit"
+              colorScheme="red"
+              isLoading={isSubmitting}
+              loadingText="Sending..."
+              _hover={{ bg: "red.600" }}
             >
               Send
             </MotionButton>
           </MotionBox>
         </SimpleGrid>
-
-        <MotionBox
-          mt="3rem"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          textAlign="center"
-          fontSize="md"
-        >
-          Created By Krishna Pratap | © 2024
-        </MotionBox>
       </MotionBox>
     </>
   );
