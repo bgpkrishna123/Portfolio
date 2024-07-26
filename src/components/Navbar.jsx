@@ -68,9 +68,9 @@ const Navbar = () => {
   const handleResumeClick = (e) => {
     e.preventDefault();
     const viewUrl =
-    'https://drive.google.com/file/d/1zy7TvzBj2hw6u1b0lGG53J1RdAS4_kSG/view?usp=sharing';
+    'https://drive.google.com/file/d/1To6D-KPsTM8VnkHsnG2UTXVYfJOdd1hC/view?usp=sharing';
     const downloadUrl =
-      'https://drive.google.com/uc?export=download&id=1zy7TvzBj2hw6u1b0lGG53J1RdAS4_kSG';
+      'https://drive.google.com/uc?export=download&id=1To6D-KPsTM8VnkHsnG2UTXVYfJOdd1hC';
 
     window.open(viewUrl, '_blank', 'noopener,noreferrer');
 
